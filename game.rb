@@ -1,5 +1,6 @@
 require "byebug"
 require_relative "./board.rb"
+require "yaml"
 
 class Game
     def initialize(size, num_bombs)
@@ -13,13 +14,12 @@ class Game
             do_play(answer, pos)
         end
         @board.render_reveal
+
         if(@board.won?)
             puts "You won!"
         elsif(@board.lost?)
             puts "You lost!"
         end
-
-        
     end
 
     def get_play
@@ -42,12 +42,13 @@ class Game
     end
     
     def save
-        puts "empty"
+        File.write("saved",self.to_yaml)
+        exit(0)
     end
 
 end
-# if $PROGRAM_NAME == __FILE__
-
-# end
-game = Game.new(9, 10)
-game.play
+if $PROGRAM_NAME == __FILE__
+    ARGV.count==0? Game.new(9,10).play : YAML.load_file(ARGV.shift).play
+end
+# game = Game.new(9, 10)
+# game.play

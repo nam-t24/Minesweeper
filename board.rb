@@ -19,11 +19,6 @@ class Board
     end
 
     def render(reveal = false)
-        # @grid.map do |row|
-        #     row.map do |tile|
-        #         reveal ? tile.to_s_answer : tile.to_s;
-        #     end.join (" ")
-        # end.join("\n")
         puts "  #{(0...9).to_a.join(" ")}"
         @grid.each_with_index do |row,i|
             join_row =row.map {|tile| reveal ? tile.to_s_answer : tile.to_s}
