@@ -1,7 +1,7 @@
 require "byebug"
 require_relative "./board.rb"
 require "yaml"
-
+#alias = Nam
 class Game
     def initialize(size, num_bombs)
         @board=Board.new(size, num_bombs)
